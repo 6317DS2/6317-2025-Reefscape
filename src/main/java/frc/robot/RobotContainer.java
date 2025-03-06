@@ -336,9 +336,9 @@ public class RobotContainer {
     // Reset gyro to 0° when B button is pressed
     
     driverController.povLeft().onTrue(Commands.runOnce(resetGyro, drive).ignoringDisable(true));
-    driverController.a().whileTrue(new ShootCoral(shooter, elevator).onlyIf(()->UtilitiesFieldSectioning.shouldShoot(drive)).withTimeout(10)).whileFalse(Commands.run(()->shooter.setVelocity(0)));
-    // driverController.b().onTrue(Commands.runOnce(() ->shooter.setVelocity(20))).onFalse(Commands.runOnce(() ->shooter.setVelocity(0)));
-    // driverController.leftBumper().onTrue(Commands.runOnce(() ->indexer.setVelocity(5))).onFalse(Commands.runOnce(() ->indexer.setVelocity(0)));
+    //driverController.a().whileTrue(new ShootCoral(shooter, elevator).onlyIf(()->UtilitiesFieldSectioning.shouldShoot(drive)).withTimeout(10)).whileFalse(Commands.run(()->shooter.setVelocity(0)));
+    driverController.b().onTrue(Commands.runOnce(() ->shooter.setVelocity(20))).onFalse(Commands.runOnce(() ->shooter.setVelocity(0)));
+    driverController.leftBumper().onTrue(Commands.runOnce(() ->indexer.setVelocity(5))).onFalse(Commands.runOnce(() ->indexer.setVelocity(0)));
     driverController.y().onTrue(Commands.runOnce(()->shooter.setVelocity(-1))).onFalse(Commands.runOnce(()->shooter.setVelocity(0)));
     // PathDone.whileTrue(new ShootCoral(shooter, elevator));
     driverController.povRight().whileTrue(Commands.runOnce(()->DriveCommands.joystickDriveAtAngle(drive, ()->x, ()->y,()-> UtilitiesFieldSectioning.getClosestSection(drive.getPose()).getRotation())).andThen(Commands.run(()->System.out.println("First Command done"))).andThen(()->shooter.setVelocity(100)));
