@@ -336,20 +336,22 @@ public class RobotContainer {
 
     driverController.povUp().onTrue(Commands.runOnce(() ->elevator.incrementPosition(0.5)).ignoringDisable(true));
     driverController.povDown().onTrue(Commands.runOnce(() ->elevator.incrementPosition(-0.5)).ignoringDisable(true));
-
+      driverController.povRight().onTrue(Commands.runOnce(() -> elevator.zeroPosition()));
 
 
     // testController.povRight().whileTrue(Commands.startEnd(() ->indexer.setVelocity(15),() ->indexer.setVoltage(0.0)));
 
     // testController.povLeft().whileTrue(Commands.startEnd(() ->shooter.setVelocity(15),() ->shooter.setVoltage(0.0)));
 
+    // ButtonBoardButtons.LEVEL_1.onTrue(elevator.setPosition(0.25));
+    // ButtonBoardButtons.LEVEL_2.onTrue(elevator.setPosition(4));
+    // ButtonBoardButtons.LEVEL_3.onTrue(elevator.setPosition(9.5));
+    // ButtonBoardButtons.LEVEL_4.onTrue(elevator.setPosition(28));
 
-
-
-    ButtonBoardButtons.LEVEL_1.whileTrue(new GoToPositionElevator(elevator,.25).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-    ButtonBoardButtons.LEVEL_2.whileTrue(new GoToPositionElevator(elevator,4).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-    ButtonBoardButtons.LEVEL_3.whileTrue(new GoToPositionElevator(elevator,9.5).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-    ButtonBoardButtons.LEVEL_4.whileTrue(new GoToPositionElevator(elevator,28).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    ButtonBoardButtons.LEVEL_1.onTrue(new GoToPositionElevator(elevator,.25));
+    ButtonBoardButtons.LEVEL_2.onTrue(new GoToPositionElevator(elevator,4));
+    ButtonBoardButtons.LEVEL_3.onTrue(new GoToPositionElevator(elevator,9.5));
+    ButtonBoardButtons.LEVEL_4.onTrue(new GoToPositionElevator(elevator,28));
     // ButtonBoardButtons.FAR_CENTER_1.whileTrue(drive.generatePath(UtilitiesFieldSectioning.L3).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
     // ButtonBoardButtons.FAR_RIGHT_1.whileTrue(drive.generatePath(UtilitiesFieldSectioning.L5).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
     // ButtonBoardButtons.FAR_RIGHT_2.whileTrue(drive.generatePath(UtilitiesFieldSectioning.L6).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
